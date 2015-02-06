@@ -10,25 +10,32 @@
 
 #import "TodoItem.h"
 
+static NSString* const KEY_FOR_TODO_ITEM = @"KeyForTodoItemTitle";
+
 @implementation TodoItem: NSObject
 
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:self.title forKey:@"KeyForTodoItemTitle"];
+    NSLog(@"TodoItem: encoding %@", self.title);
+    
+    [aCoder encodeObject:self.title forKey:KEY_FOR_TODO_ITEM];
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super init];
-    if (self)
+
+    NSLog(@"TodoItem: decoding");
+    
+    id obj = [aDecoder decodeObjectForKey:KEY_FOR_TODO_ITEM];
+    
+    if ( [obj isKindOfClass:[NSString class]])
     {
-        self.itemArray = [aDecoder decodeObjectForKey:@""];
+        NSLog(@"TodoItem: got %@", (NSString*)obj);
+        
+        self = [TodoItem todoItemWithTitle:obj];
     }
-    id obj = [aDecoder decodeObjectForKey:@"KeyForTodoItemTitle"];
-    
-    NSString* title = (NSString*)obj;
-    
-    TodoItem* item = TodoItem todoItemWithTitle:title;
+    return self;
 }
 
 +(instancetype) todoItemWithTitle: (NSString*)title

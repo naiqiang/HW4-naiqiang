@@ -71,6 +71,14 @@
     return [self.todoItemList count];
 }
 
++(instancetype) initWithArrayOfItems: (NSArray*)items
+{
+    TodoList* list = [[TodoList alloc] init];
+    list.allowDuplicates = YES;
+    list.todoItemList = [[NSMutableArray alloc] initWithArray:items];
+    return list;
+}
+
 +(instancetype) todoList
 {
     TodoList* list = [[TodoList alloc] init];
@@ -106,15 +114,35 @@
     
 }
 
+static NSString* const KEY_FOR_TODO_LIST = @"KeyForTodoList";
+
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:self.todoItemList forKey:@"KeyForTodoList"];
+    NSLog(@"TodoList: encoding data");
     
+    [aCoder encodeObject:self.todoItemList forKey:KEY_FOR_TODO_LIST];
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
-    [aDecoder decodeObjectForKey:@"KeyForTodoList"];
+    NSLog(@"TodoList: decoding data");
+    
+    id obj = [aDecoder decodeObjectForKey:KEY_FOR_TODO_LIST];
+    
+    self = [super init];
+    if (self)
+    {
+        if ( [obj isKindOfClass:[NSMutableArray class]])
+        {
+            NSArray* items = (NSArray*)obj;
+            
+            NSLog(@"TodoList: array of %lu", (unsigned long)[items count]);
+            NSLog(@"%@", items);
+
+            self = [TodoList initWithArrayOfItems:items];
+        }
+    }
+    return self;
     
 }
 

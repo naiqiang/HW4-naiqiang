@@ -10,7 +10,7 @@
 #import "TodoList.h"
 
 @interface Document ()
-@property TodoList* todoList;
+@property TodoList* documentTodoList;
 @end
 
 @implementation Document
@@ -19,6 +19,7 @@
     self = [super init];
     if (self) {
         // Add your subclass-specific initialization here.
+        NSLog(@"document init");
     }
     return self;
 }
@@ -43,8 +44,15 @@
     // You can also choose to override -fileWrapperOfType:error:, -writeToURL:ofType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
     //[NSException raise:@"UnimplementedMethod" format:@"%@ is unimplemented", NSStringFromSelector(_cmd)];
     //return nil;
-    TodoList* list = [[TodoList alloc] init];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:list];
+    if ( self.documentTodoList==nil)
+    {
+        NSLog(@"creating initial list");
+        self.documentTodoList = [TodoList groceryList];
+    }
+    
+    NSLog(@"saving document");
+    
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.documentTodoList];
     return data;
 }
 
@@ -56,9 +64,14 @@
     //[NSException raise:@"UnimplementedMethod" format:@"%@ is unimplemented", NSStringFromSelector(_cmd)];
     //return YES;
     
+    NSLog(@"loading document");
+
     id object = [NSKeyedUnarchiver unarchiveObjectWithData:data ];
-    
-    
+    if ( [object isKindOfClass:[TodoList class]])
+    {
+        self.documentTodoList = object;
+    }
+    return YES;
 }
 
 @end
