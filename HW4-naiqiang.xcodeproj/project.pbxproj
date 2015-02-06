@@ -14,6 +14,8 @@
 		D62E18011A8476DC003E3108 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D62E18001A8476DC003E3108 /* Images.xcassets */; };
 		D62E18041A8476DC003E3108 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D62E18021A8476DC003E3108 /* Main.storyboard */; };
 		D62E18101A8476DC003E3108 /* HW4_naiqiangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D62E180F1A8476DC003E3108 /* HW4_naiqiangTests.m */; };
+		D62E181D1A8477B8003E3108 /* TodoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D62E181A1A8477B8003E3108 /* TodoItem.m */; };
+		D62E181E1A8477B8003E3108 /* TodoList.m in Sources */ = {isa = PBXBuildFile; fileRef = D62E181C1A8477B8003E3108 /* TodoList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,10 @@
 		D62E18091A8476DC003E3108 /* HW4-naiqiangTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HW4-naiqiangTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D62E180E1A8476DC003E3108 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D62E180F1A8476DC003E3108 /* HW4_naiqiangTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HW4_naiqiangTests.m; sourceTree = "<group>"; };
+		D62E18191A8477B8003E3108 /* TodoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoItem.h; sourceTree = "<group>"; };
+		D62E181A1A8477B8003E3108 /* TodoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoItem.m; sourceTree = "<group>"; };
+		D62E181B1A8477B8003E3108 /* TodoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoList.h; sourceTree = "<group>"; };
+		D62E181C1A8477B8003E3108 /* TodoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoList.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,14 +88,12 @@
 		D62E17F21A8476DC003E3108 /* HW4-naiqiang */ = {
 			isa = PBXGroup;
 			children = (
-				D62E17F51A8476DC003E3108 /* AppDelegate.h */,
-				D62E17F61A8476DC003E3108 /* AppDelegate.m */,
+				D62E181F1A8479C2003E3108 /* Models */,
+				D62E18201A847A0D003E3108 /* Base */,
 				D62E17FA1A8476DC003E3108 /* ViewController.h */,
 				D62E17FB1A8476DC003E3108 /* ViewController.m */,
 				D62E17FD1A8476DC003E3108 /* Document.h */,
 				D62E17FE1A8476DC003E3108 /* Document.m */,
-				D62E18001A8476DC003E3108 /* Images.xcassets */,
-				D62E18021A8476DC003E3108 /* Main.storyboard */,
 				D62E17F31A8476DC003E3108 /* Supporting Files */,
 			);
 			path = "HW4-naiqiang";
@@ -119,6 +123,28 @@
 				D62E180E1A8476DC003E3108 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D62E181F1A8479C2003E3108 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D62E18191A8477B8003E3108 /* TodoItem.h */,
+				D62E181A1A8477B8003E3108 /* TodoItem.m */,
+				D62E181B1A8477B8003E3108 /* TodoList.h */,
+				D62E181C1A8477B8003E3108 /* TodoList.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		D62E18201A847A0D003E3108 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				D62E17F51A8476DC003E3108 /* AppDelegate.h */,
+				D62E17F61A8476DC003E3108 /* AppDelegate.m */,
+				D62E18001A8476DC003E3108 /* Images.xcassets */,
+				D62E18021A8476DC003E3108 /* Main.storyboard */,
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,9 +247,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D62E17FF1A8476DC003E3108 /* Document.m in Sources */,
+				D62E181E1A8477B8003E3108 /* TodoList.m in Sources */,
 				D62E17FC1A8476DC003E3108 /* ViewController.m in Sources */,
 				D62E17F91A8476DC003E3108 /* main.m in Sources */,
 				D62E17F71A8476DC003E3108 /* AppDelegate.m in Sources */,
+				D62E181D1A8477B8003E3108 /* TodoItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
