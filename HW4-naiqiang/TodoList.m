@@ -114,24 +114,27 @@
     
 }
 
-static NSString* const KEY_FOR_TODO_LIST = @"KeyForTodoList";
+static NSString* const KEY_FOR_TODO_LIST = @"KeyForTodoListArray";
+static NSString* const KEY_FOR_ALLOW_DUPS = @"KeyForTodoListAllowDups";
 
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
     NSLog(@"TodoList: encoding data");
     
     [aCoder encodeObject:self.todoItemList forKey:KEY_FOR_TODO_LIST];
+    [aCoder encodeBool:self.allowDuplicates forKey:KEY_FOR_ALLOW_DUPS];
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
     NSLog(@"TodoList: decoding data");
     
-    id obj = [aDecoder decodeObjectForKey:KEY_FOR_TODO_LIST];
-    
     self = [super init];
     if (self)
     {
+        id obj = [aDecoder decodeObjectForKey:KEY_FOR_TODO_LIST];
+        BOOL allow = [aDecoder decodeBoolForKey:KEY_FOR_ALLOW_DUPS];
+        
         if ( [obj isKindOfClass:[NSMutableArray class]])
         {
             NSArray* items = (NSArray*)obj;
@@ -140,6 +143,7 @@ static NSString* const KEY_FOR_TODO_LIST = @"KeyForTodoList";
             NSLog(@"%@", items);
 
             self = [TodoList initWithArrayOfItems:items];
+            self.allowDuplicates = allow;
         }
     }
     return self;
