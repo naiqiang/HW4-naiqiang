@@ -38,6 +38,7 @@
 -(void)updateUserInterface: (TodoList*)list
 {
     [self.tableView reloadData];
+    [self.textFieldEntry setEditable:NO];
 }
 
 -(void)controlTextDidChange:(NSNotification *)obj
