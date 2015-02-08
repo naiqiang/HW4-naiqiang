@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "TodoItem.h"
 
 @interface ViewController()
 -(void)updateUserInterface: (TodoList*)list;
@@ -68,6 +69,10 @@
 - (IBAction)clickAddButton:(id)sender {
     NSLog(@"add");
     
+    TodoItem* item = [TodoItem todoItemWithTitle:@"New Item"];
+    [self.todoList addItem:item];
+    
+    [self updateUserInterface:self.todoList];    
 }
 
 - (IBAction)clickRemoveButton:(NSButton *)sender {
