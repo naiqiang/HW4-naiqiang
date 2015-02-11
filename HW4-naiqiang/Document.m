@@ -8,6 +8,7 @@
 
 #import "Document.h"
 #import "TodoList.h"
+#import "ViewController.h"
 
 @interface Document ()
 @property TodoList* documentTodoList;
@@ -20,6 +21,7 @@
     if (self) {
         // Add your subclass-specific initialization here.
         NSLog(@"document init");
+        self.documentTodoList = [TodoList groceryList];
     }
     return self;
 }
@@ -34,8 +36,26 @@
 }
 
 - (void)makeWindowControllers {
+    NSLog(@"makeWindowControllers");
+    
+    if ( self.documentTodoList==nil)
+    {
+        NSLog(@"creating initial list");
+        self.documentTodoList = [TodoList groceryList];
+    }
+
     // Override to return the Storyboard file name of the document.
-    [self addWindowController:[[NSStoryboard storyboardWithName:@"Main" bundle:nil] instantiateControllerWithIdentifier:@"Document Window Controller"]];
+    NSStoryboard* sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
+    NSWindowController* wc = [sb instantiateControllerWithIdentifier:@"Document Window Controller"];
+    
+    ViewController* vc = (ViewController*)wc.contentViewController;
+    vc.todoList = self.documentTodoList;
+    
+    NSLog(@"makeWindowControllers:set");
+    
+    [self addWindowController:wc];
+    
+    [vc updateUserInterface];
 }
 
 // saving
@@ -44,12 +64,6 @@
     // You can also choose to override -fileWrapperOfType:error:, -writeToURL:ofType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
     //[NSException raise:@"UnimplementedMethod" format:@"%@ is unimplemented", NSStringFromSelector(_cmd)];
     //return nil;
-    if ( self.documentTodoList==nil)
-    {
-        NSLog(@"creating initial list");
-        self.documentTodoList = [TodoList groceryList];
-    }
-    
     NSLog(@"saving document");
     
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.documentTodoList];

@@ -17,6 +17,9 @@
 @property (weak) IBOutlet NSTextField *textFieldEntry;
 
 @property TodoList* todoList;
+@property NSInteger current;
+
+-(void)updateUserInterface;
 
 @end
 

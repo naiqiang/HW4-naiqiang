@@ -21,6 +21,7 @@
 -(BOOL)addItem:(TodoItem*)item;
 -(BOOL)removeItem:(TodoItem*)item;
 -(BOOL)hasTodoItem:(TodoItem*)item;
+-(BOOL)updateItem:(NSInteger)index withNewTitle:(NSString*)newTitle;
 
 //-(void)addItem:(TodoItem*)item;    // insert item if OK
 //-(BOOL)canAddItem:(TodoItem*)item; // check if OK to insert

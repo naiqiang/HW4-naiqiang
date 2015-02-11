@@ -45,6 +45,17 @@
     return YES;
 }
 
+-(BOOL)updateItem:(NSInteger)index withNewTitle:(NSString*)newTitle
+{
+    if ((index<0) || (index >= [self.todoItemList count]))
+    {
+        return NO;
+    }
+    
+    TodoItem* item = self.todoItemList[index];
+    item.title = newTitle;
+    return YES;
+}
 
 -(BOOL)removeItem:(TodoItem*)item
 {
@@ -96,6 +107,8 @@
     [list.todoItemList addObject: [TodoItem todoItemWithTitle:@"Apple"]];
     [list.todoItemList addObject: [TodoItem todoItemWithTitle:@"Orange"]];
     [list.todoItemList addObject: [TodoItem todoItemWithTitle:@"Banana"]];
+    [list.todoItemList addObject: [TodoItem todoItemWithTitle:@"Blueberry"]];
+    [list.todoItemList addObject: [TodoItem todoItemWithTitle:@"Pineapple"]];
     
     return list;
 }
