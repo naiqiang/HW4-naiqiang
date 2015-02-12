@@ -20,9 +20,6 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.textFieldEntry.delegate = self;
-    
-    //self.todoList = [TodoList groceryList];
-    [self updateUserInterface];
     self.current = -1;
 }
 
@@ -30,7 +27,6 @@
     [super setRepresentedObject:representedObject];
 
     // Update the view, if already loaded.
-    NSLog(@"setRepresentedObject");
 }
 
 
@@ -69,9 +65,7 @@
 
 -(NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-//    NSLog(@"create table row %ld", (long)row);
-    
-    NSTableCellView* cell =[tableView makeViewWithIdentifier:@"Cell" owner:nil];
+    NSTableCellView* cell =[tableView makeViewWithIdentifier:@"Cell" owner:self];
     
     id obj = [[self.todoList allItems] objectAtIndex:row];
     TodoItem* item = (TodoItem*)obj;
@@ -89,6 +83,11 @@
     [self.textFieldEntry setEditable:YES];
     self.textFieldEntry.stringValue = view.textField.stringValue;
     return YES;
+}
+
+-(CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row
+{
+    return 35;
 }
 
 - (IBAction)clickAddButton:(id)sender {

@@ -25,13 +25,11 @@ static NSString* const KEY_FOR_TODO_ITEM = @"KeyForTodoItemTitle";
 {
     self = [super init];
 
-    NSLog(@"TodoItem: decoding");
-    
     id obj = [aDecoder decodeObjectForKey:KEY_FOR_TODO_ITEM];
     
     if ( [obj isKindOfClass:[NSString class]])
     {
-        NSLog(@"TodoItem: got %@", (NSString*)obj);
+        NSLog(@"TodoItem: decoding %@", (NSString*)obj);
         
         self = [TodoItem todoItemWithTitle:obj];
     }

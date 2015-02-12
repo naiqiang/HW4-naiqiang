@@ -38,23 +38,15 @@
 - (void)makeWindowControllers {
     NSLog(@"makeWindowControllers");
     
-    if ( self.documentTodoList==nil)
-    {
-        NSLog(@"creating initial list");
-        self.documentTodoList = [TodoList groceryList];
-    }
-
     // Override to return the Storyboard file name of the document.
     NSStoryboard* sb = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
     NSWindowController* wc = [sb instantiateControllerWithIdentifier:@"Document Window Controller"];
+    [self addWindowController:wc];
+    
+    NSLog(@"viewController:updateUI");
     
     ViewController* vc = (ViewController*)wc.contentViewController;
     vc.todoList = self.documentTodoList;
-    
-    NSLog(@"makeWindowControllers:set");
-    
-    [self addWindowController:wc];
-    
     [vc updateUserInterface];
 }
 
